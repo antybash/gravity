@@ -1,0 +1,164 @@
+%
+\documentclass[11pt]{report}
+
+\usepackage{graphicx}
+\usepackage{braket}
+\usepackage{mdframed}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{color}
+
+%\usepackage[T1]{fontenc}
+%\usepackage[euler-digits,small]{eulervm}
+%\usepackage[sc,osf]{mathpazo}
+%\linespread{1.025}
+%\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}
+\geometry{
+letterpaper,
+lmargin=2cm,
+rmargin=2cm,
+tmargin=2cm,
+bmargin=2cm,
+footskip=12pt,
+headheight=12pt}
+
+\newcommand{\iden}{\mathds{1}}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\VV}{\mc {V}}
+\newcommand{\WW}{\mc {W}}
+\newcommand{\FF}{{\mathbb{F}}}
+\newcommand{\tat}{\text}
+\newcommand{\ti}{\to\infty}
+\newcommand{\mc}{\mathcal}
+\newcommand{\ms}{\mathscr}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\cnj}{\overline}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\sg}{\sigma}
+
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\FR}[2]{\frac{#1}{#2}}
+\newcommand{\PFR}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\SFR}[2]{\sqrt{\frac{#1}{#2}}}
+
+\newcommand{\ten}{\otimes}
+
+\newcommand{\Align}[1]{\begin{align*}#1\end{align*}}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conj}{Conjecture}
+\newtheorem{ex}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+\newtheorem*{claim}{Claim}
+
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\Card}{card}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\GL}{GL}
+
+\def\sm{\setminus}
+\def\seq{\subseteq}
+\def\ii{\item}
+\def\bE{\begin{enumerate}}
+\def\eE{\end{enumerate}}
+\def\bP{\begin{pmatrix}}
+\def\eP{\end{pmatrix}}
+
+\renewcommand{\empty}{\varnothing}
+\newcommand{\hv}[1]{\hat{\textbf{#1}}}
+\newcommand{\oti}[2]{#1_{#2=1}^\infty}
+\newcommand{\lam}{\lambda}
+\newcommand{\om}{\omega}
+\newcommand{\Om}{\Omega}
+\newcommand{\gam}{\gamma}
+\newcommand{\di}{\partial}
+
+\newcommand{\ha}{\hat a}
+\newcommand{\had}{\hat a^\dagger}
+
+\newcommand{\colr}[1]{ {\color{red}  #1 } }
+\newcommand{\colb}[1]{ {\color{blue} #1 } }
+\newcommand{\colnb}[1]{ {\color{NavyBlue} #1 } }
+\newcommand{\colm}[1]{ {\color{Fuchsia} #1 } }
+
+\date{\today}
+\title{Gravitation and Cosmology Notes}
+\author{}
+
+\begin{document}
+\maketitle
+
+\chapter{Special Relativity}
+
+The axioms of Special Relativity are:
+\begin{enumerate}
+    \item The laws are invariant under change of inertial reference frames.
+    \item In inertial reference frames, there is an absolute speed of
+        signal propogation $c=1$.
+\end{enumerate}
+
+\section{Lorentz Transformations}
+Let $x^\mu,x'^\mu$ be two coordinate systems and $c=1$. For now we work in the
+classical vacuum and here experiments\footnote{Is there a better explanation?}
+point us to the fact that light travels at the absolute speed $c$.
+Suppose $A,B$ are spacetime events representing emmission and absorption of
+light. By the second postulate, the distance between these two points is the
+same in both reference frames, and in particular, the quantity 
+$(\Delta x^0)^2-(\Delta x^1)^2-(\Delta x^2)^2-(\Delta x^3)^2 = 0 = (\Delta
+x'^0)^2-(\Delta x'^1)^2-(\Delta x'^2)^2-(\Delta x'^3)^2$.
+This leads us to the definition of the \textbf{proper time}:
+\[d\tau^2 := dt^2 - d\bm x^2 = -\eta_{\alpha\beta}dx^\alpha dx^\beta.\]
+
+The notation $dx^\alpha dx^\beta$, in the mathematical sense, is a simple tensor
+$dx^\alpha\ten dx^\beta$ and \emph{not} the symmetric tensor. Using the Einstein
+summation convention and the fact that our metrics are always \emph{symmetric},
+this means that the contraction $\eta_{\alpha\beta}dx^\alpha dx^\beta
+=\eta_{00}dx^0\ten dx^0+\eta_{10}dx^1\ten dx^0+\eta_{01}dx^0\ten{dx}^1+\cdots
+=\eta_{00}dx^0\ten dx^0+\eta_{10}(dx^1\ten dx^0+dx^0\ten{dx}^1)+\cdots$. Now we
+return back to proper time and see how far we can run with the concept.
+
+\begin{proposition} Let $\ms L \seq \GL_\RR(3,1)$ denote the subgroup of linear
+operators that fix proper time: $d\tau'^2 = d\tau^2$. Then the set $\ms L$ can
+be described concretely:
+\[ \ms L = \{ \Lambda\ |\ \Lambda^\alpha_\gamma
+\Lambda^\beta_\delta\eta_{\alpha\beta} = \eta_{\beta\delta}\}.\]
+\end{proposition}
+
+
+\end{document}
+
+
