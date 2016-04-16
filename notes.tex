@@ -58,6 +58,7 @@ headheight=12pt}
 
 \newcommand{\restr}{\upharpoonright}
 \newcommand{\FR}[2]{\frac{#1}{#2}}
+\newcommand{\PP}[2]{\frac{\di #1}{\di #2}}
 \newcommand{\PFR}[2]{\left(\frac{#1}{#2}\right)}
 \newcommand{\SFR}[2]{\sqrt{\frac{#1}{#2}}}
 
@@ -71,12 +72,12 @@ headheight=12pt}
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
-\newtheorem{proposition}{Proposition}
+\newtheorem{proposition}{Proposition}[section]
 \newtheorem{conj}{Conjecture}
 \newtheorem{ex}{Example}
 
 \theoremstyle{remark}
-\newtheorem*{remark}{Remark}
+\newtheorem{remark}{Remark}[section]
 \newtheorem*{note}{Note}
 \newtheorem{case}{Case}
 \newtheorem*{claim}{Claim}
@@ -138,8 +139,8 @@ point us to the fact that light travels at the absolute speed $c$.
 Suppose $A,B$ are spacetime events representing emmission and absorption of
 light. By the second postulate, the distance between these two points is the
 same in both reference frames, and in particular, the quantity 
-$(\Delta x^0)^2-(\Delta x^1)^2-(\Delta x^2)^2-(\Delta x^3)^2 = 0 = (\Delta
-x'^0)^2-(\Delta x'^1)^2-(\Delta x'^2)^2-(\Delta x'^3)^2$.
+\[(\Delta x^0)^2-(\Delta x^1)^2-(\Delta x^2)^2-(\Delta x^3)^2 = 0 = (\Delta
+x'^0)^2-(\Delta x'^1)^2-(\Delta x'^2)^2-(\Delta x'^3)^2.\]
 This leads us to the definition of the \textbf{proper time}:
 \[d\tau^2 := dt^2 - d\bm x^2 = -\eta_{\alpha\beta}dx^\alpha dx^\beta.\]
 
@@ -157,6 +158,54 @@ be described concretely:
 \[ \ms L = \{ \Lambda\ |\ \Lambda^\alpha_\gamma
 \Lambda^\beta_\delta\eta_{\alpha\beta} = \eta_{\beta\delta}\}.\]
 \end{proposition}
+\begin{proof}
+The proof of this is a straightforward and we follow Weinberg's derivation.
+Take a linear transformation $x'^\alpha = \Lambda^\alpha_\beta x^\beta$.
+Then $d\tau^2 = d\tau'^2$ equivalent to:
+\begin{align*}
+    -\eta_{\beta\delta} dx^\beta dx^\delta
+  &=-\eta_{\alpha\gamma} dx'^\alpha dx'^\gamma\\
+  &=-\eta_{\alpha\gamma}(\Lambda^\alpha_\beta dx^\beta)
+                        (\Lambda^\gamma_\delta dx^\delta)
+\end{align*}
+Therefore, $\eta_{\beta\delta} = \eta_{\alpha\gamma} \Lambda^\alpha_\beta
+\Lambda^\gamma_\delta$ as was desired. 
+\end{proof}
+
+\begin{remark}
+An important remark is in order. The above proposition emphasized
+\emph{linear} transformations. In fact it is possible to show that the set
+of all nonsingular analytic coordinate transformations (ones which are
+invertible and locally given by a convergent power series) coincides with
+affine transformations of the form $x' = \Lambda x + a$, with
+$\Lambda\in\ms L$.  To show this it suffices to show the second derivative
+of the coordinate transformation is identically zero, which implies that
+all higher order derivatives also vanish. Following the steps of the above
+proof, $x \to x'$ preserves proper time then \[ \eta_{\beta\delta} =
+\eta_{\alpha\gamma} \PP{x'^\alpha}{x^\beta} \PP{x'^\gamma}{x^\delta}.\]
+Taking a second derivative we get:
+\begin{align*}
+0 &= \eta_{\alpha\gamma}\FR{\di^2 x'^\alpha}{\di x^\veps\di x^\beta}
+\PP{x'^\gam}{x^\delta} +\eta_{\alpha\gamma}\PP{x'^\alpha}{x^\beta}
+\FR{\di^2 x'^\gam}{\di x^\veps\di x^\delta}\\
+&= \eta_{\alpha\gam}x'^\alpha_{\ \ ;\veps\beta} x'^\gam_{\ \ ;\delta}
++\eta_{\alpha\gam}x'^\alpha_{\ \ ;\beta} x'^\gam_{\ \ ;\veps\delta}
+\end{align*}
+Now we do a \textbf{magical} transformation. We add this equation with
+$\veps$ and $\beta$ swapped, and subtract this equation but with $\veps$
+and $\delta$ swapped. This will give:
+\[0=2\eta_{\alpha\gam} x'^\alpha_{\ \ ;\veps\beta}x'^\gam_{\ \ ;\delta}\]
+Since $\eta$ is invertible and so is $x'^\gam_{\ \ ;\delta}$ by assumption,
+it follows that $x'^\alpha_{\ \ ;\veps\beta} = 0$ for any
+$\alpha,\beta,\veps$. 
+\end{remark}
+
+\begin{remark} In the last remark, we took $d\tau^2$ invariant. If we only
+require that the equation $d\tau = 0$ (that is, the light-cone) to be
+invariant then we would have obtained the conformal group. \colr{Check
+this and desribe this and the last remark geometrically.}
+\end{remark}
+
 
 
 \end{document}
