@@ -1,0 +1,273 @@
+%
+\documentclass[11pt]{report}
+
+\usepackage{graphicx}
+\usepackage{braket}
+\usepackage{mdframed}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{color}
+
+%\usepackage[T1]{fontenc}
+%\usepackage[euler-digits,small]{eulervm}
+%\usepackage[sc,osf]{mathpazo}
+%\linespread{1.025}
+%\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}
+\geometry{
+letterpaper,
+lmargin=2cm,
+rmargin=2cm,
+tmargin=2cm,
+bmargin=2cm,
+footskip=12pt,
+headheight=12pt}
+
+\newcommand{\iden}{\mathds{1}}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\VV}{\mc {V}}
+\newcommand{\WW}{\mc {W}}
+\newcommand{\FF}{{\mathbb{F}}}
+\newcommand{\tat}{\text}
+\newcommand{\ti}{\to\infty}
+\newcommand{\mc}{\mathcal}
+\newcommand{\ms}{\mathscr}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\cnj}{\overline}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\sg}{\sigma}
+
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\FR}[2]{\frac{#1}{#2}}
+\newcommand{\PP}[2]{\frac{\di #1}{\di #2}}
+\newcommand{\PFR}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\SFR}[2]{\sqrt{\frac{#1}{#2}}}
+
+\newcommand{\ten}{\otimes}
+
+\newcommand{\Align}[1]{\begin{align*}#1\end{align*}}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{conj}{Conjecture}
+\newtheorem{ex}{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+\newtheorem*{claim}{Claim}
+
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\Card}{card}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\GL}{GL}
+
+\def\sm{\setminus}
+\def\seq{\subseteq}
+\def\ii{\item}
+\def\bE{\begin{enumerate}}
+\def\eE{\end{enumerate}}
+\def\bP{\begin{pmatrix}}
+\def\eP{\end{pmatrix}}
+
+\renewcommand{\empty}{\varnothing}
+\newcommand{\hv}[1]{\hat{\textbf{#1}}}
+\newcommand{\oti}[2]{#1_{#2=1}^\infty}
+\newcommand{\lam}{\lambda}
+\newcommand{\om}{\omega}
+\newcommand{\Om}{\Omega}
+\newcommand{\gam}{\gamma}
+\newcommand{\di}{\partial}
+
+\newcommand{\ha}{\hat a}
+\newcommand{\had}{\hat a^\dagger}
+
+\newcommand{\colr}[1]{ {\color{red}  #1 } }
+\newcommand{\colb}[1]{ {\color{blue} #1 } }
+\newcommand{\colnb}[1]{ {\color{NavyBlue} #1 } }
+\newcommand{\colm}[1]{ {\color{Fuchsia} #1 } }
+
+\date{\today}
+\title{Gravitation and Cosmology Notes}
+\author{}
+
+\begin{document}
+\maketitle
+
+\chapter{Special Relativity}
+
+The axioms of Special Relativity are:
+\begin{enumerate}
+\item The laws are invariant under change of inertial reference frames.
+\item In inertial reference frames, there is an absolute speed of signal
+propogation, $c=1$.
+\end{enumerate}
+
+\section{Lorentz Transformations}
+Let $x^\mu,x'^\mu$ be two coordinate systems and $c=1$. For now we work in the
+classical vacuum and here experiments\footnote{Is there a better explanation?}
+point us to the fact that light travels at the absolute speed $c$.
+Suppose $A,B$ are spacetime events representing emmission and absorption of
+light. By the second postulate, the distance between these two points is the
+same in both reference frames, and in particular, the quantity 
+\[(\Delta x^0)^2-(\Delta x^1)^2-(\Delta x^2)^2-(\Delta x^3)^2 = 0 = (\Delta
+x'^0)^2-(\Delta x'^1)^2-(\Delta x'^2)^2-(\Delta x'^3)^2.\]
+This leads us to the definition of the \textbf{proper time}:
+\[d\tau^2 := dt^2 - d\bm x^2 = -\eta_{\alpha\beta}dx^\alpha dx^\beta.\]
+
+The notation $dx^\alpha dx^\beta$, in the mathematical sense, is a simple tensor
+$dx^\alpha\ten dx^\beta$ and \emph{not} the symmetric tensor. Using the Einstein
+summation convention and the fact that our metrics are always \emph{symmetric},
+this means that the contraction $\eta_{\alpha\beta}dx^\alpha dx^\beta
+=\eta_{00}dx^0\ten dx^0+\eta_{10}dx^1\ten dx^0+\eta_{01}dx^0\ten{dx}^1+\cdots
+=\eta_{00}dx^0\ten dx^0+\eta_{10}(dx^1\ten dx^0+dx^0\ten{dx}^1)+\cdots$. Now we
+return back to proper time and see how far we can run with the concept.
+
+\begin{proposition} Let $\ms L \seq \GL_\RR(3,1)$ denote the subgroup of linear
+operators that fix proper time: $d\tau'^2 = d\tau^2$. Then the set $\ms L$ can
+be described concretely:
+\[ \ms L = \{ \Lambda\ |\ \Lambda^\alpha_\gamma
+\Lambda^\beta_\delta\eta_{\alpha\beta} = \eta_{\beta\delta}\}.\]
+\end{proposition}
+\begin{proof}
+The proof of this is a straightforward and we follow Weinberg's derivation.
+Take a linear transformation $x'^\alpha = \Lambda^\alpha_\beta x^\beta$.
+Then $d\tau^2 = d\tau'^2$ equivalent to:
+\begin{align*}
+    -\eta_{\beta\delta} dx^\beta dx^\delta
+  &=-\eta_{\alpha\gamma} dx'^\alpha dx'^\gamma\\
+  &=-\eta_{\alpha\gamma}(\Lambda^\alpha_\beta dx^\beta)
+                        (\Lambda^\gamma_\delta dx^\delta)
+\end{align*}
+Therefore, $\eta_{\beta\delta} = \eta_{\alpha\gamma} \Lambda^\alpha_\beta
+\Lambda^\gamma_\delta$ as was desired. 
+\end{proof}
+
+\begin{remark}
+An important remark is in order. The above proposition emphasized
+\emph{linear} transformations. In fact it is possible to show that the set
+of all nonsingular analytic coordinate transformations (ones which are
+invertible and locally given by a convergent power series) coincides with
+affine transformations of the form $x' = \Lambda x + a$, with
+$\Lambda\in\ms L$.  To show this it suffices to show the second derivative
+of the coordinate transformation is identically zero, which implies that
+all higher order derivatives also vanish. Following the steps of the above
+proof, $x \to x'$ preserves proper time then \[ \eta_{\beta\delta} =
+\eta_{\alpha\gamma} \PP{x'^\alpha}{x^\beta} \PP{x'^\gamma}{x^\delta}.\]
+Taking a second derivative we get:
+\begin{align*}
+0 &= \eta_{\alpha\gamma}\FR{\di^2 x'^\alpha}{\di x^\veps\di x^\beta}
+\PP{x'^\gam}{x^\delta} +\eta_{\alpha\gamma}\PP{x'^\alpha}{x^\beta}
+\FR{\di^2 x'^\gam}{\di x^\veps\di x^\delta}\\
+&= \eta_{\alpha\gam}x'^\alpha_{\ \ ;\veps\beta} x'^\gam_{\ \ ;\delta}
++\eta_{\alpha\gam}x'^\alpha_{\ \ ;\beta} x'^\gam_{\ \ ;\veps\delta}
+\end{align*}
+Now we do a \textbf{magical} transformation. We add this equation with
+$\veps$ and $\beta$ swapped, and subtract this equation but with $\veps$
+and $\delta$ swapped. This will give:
+\[0=2\eta_{\alpha\gam} x'^\alpha_{\ \ ;\veps\beta}x'^\gam_{\ \ ;\delta}\]
+Since $\eta$ is invertible and so is $x'^\gam_{\ \ ;\delta}$ by assumption,
+it follows that $x'^\alpha_{\ \ ;\veps\beta} = 0$ for any
+$\alpha,\beta,\veps$. 
+\end{remark}
+
+\begin{remark} In the last remark, we took $d\tau^2$ invariant. If we only
+require that the equation $d\tau = 0$ (that is, the light-cone) to be
+invariant then we would have obtained the conformal group. \colr{Check
+this and desribe this and the last remark geometrically.}
+\end{remark}
+
+Here are some of the commonly used names associated with different types of
+Lorentz transformations.
+\begin{itemize}
+    \item \textbf{Inhomogenous Lorentz Group/Poincar\'e Group} $\{x'^\alpha =
+    \Lambda^\alpha_\beta x^\beta + a^\alpha\ |\ \Lambda\in\ms L\}$
+    \item \textbf{Homogenous Lorentz Group:} $\{x'^\alpha =
+    \Lambda^\alpha_\beta x^\beta\ |\ \Lambda\in\ms L\}$
+    \item \textbf{Proper} (in)homogenous Lorentz groups: $\Lambda^0_0
+        \ge1;\ \ \mathrm{det} \Lambda = 1$.
+\end{itemize}
+Using $\eta_{\alpha\beta}\Lambda^\alpha_\gam\Lambda^\beta_\delta =
+\eta_{\gam\delta}$ with $\gam=\delta=0$ we have:
+\[(\Lambda^0_0)^2 = 1+ \sum_{i=1}^3 (\Lambda^i_0)^2 \ge 1\ \text{and}\ 
+(\mathrm{det}\ \Lambda)^2 = 1\]
+This means that the \emph{proper} Lorentz groups are the connected
+components of the identity $\Lambda^\alpha_\beta = \delta^\alpha_\beta$.
+There are Lorentz transformations that involve \emph{space inversion}:
+$\mathrm{det}\ \Lambda = -1, \Lambda^0_0 \ge1$; and that involve \emph{time
+reversal}: $\mathrm{det}\ \Lambda = -1, \Lambda^0_0 \le 1$. \colr{What does
+Weinberg mean when he says that space inversion is not an exact symmetry of
+nature and why is time reversal suspected not to be one as well?}
+
+\subsection{Boosts}
+One may wonder what are the differences between the Galilean group and the
+Poincar\'e group. The former can be recovered by taking $\Lambda^0_0 = 1$
+and $\Lambda^0_i = \Lambda^i_0 = 0$. The Poincar\'e enjoy the extra feature
+of \textbf{boosts}. Suppose there are two observers $O$ and $O'$ watching a
+particle move. $O$ sees it at rest, while $O'$ sees it moving away at $\bm
+v$. Then, since $d\bm x = 0$:
+\begin{align*}
+    dx'^i &= \Lambda^i_0 dt\\
+    dt'   &= \Lambda^0_0 dt
+\end{align*}
+Dividing $dx'^i/dt'$ gives $\bm v'$:
+\begin{align}
+\Lambda^i_0 = \bm v\Lambda^0_0.
+    \label{firstgammarelation}
+\end{align}
+In the defining relation for $\Lambda$,
+$\eta_{\alpha\beta}\Lambda^\alpha_\gam\Lambda^\beta_\delta =
+\eta_{\gam\delta}$, we can set $\gam=\delta=0$ and obtain:
+\begin{align}
+-1 = -(\Lambda^0_0)^2+\sum_{i=1}^3 (\Lambda^i_0)^2.
+\label{secondgammarelation}
+\end{align}
+Plugging in the first relation, \eqref{firstgammarelation}, into equation
+\eqref{secondgammarelation}, solving for $\Lambda^\mu_0$ describing the
+boost:
+\begin{align}
+    \Lambda^0_0 = \gam\ \ \text{and}\ \ \Lambda^i_0 = \gam v_i.
+    \label{boost}
+\end{align}
+A convenient choice, although not the only one, for $\Lambda^i_{\ \ j}$ is
+the following:
+\begin{align}
+    \Lambda^i_{\ \ j}&=\delta_{ij}+v_iv_j\FR{\gam-1}{\bm v^2}\\
+    \Lambda^0_{\ \ j}&= \gam v_j
+    \label{definingLambda}
+\end{align}
+
+\section{Time Dilation}
+
+\end{document}
+
+
